@@ -1,6 +1,7 @@
 package annotation
 
 import (
+	_ "embed"
 	"errors"
 	"go/ast"
 	"go/parser"
@@ -68,9 +69,12 @@ func (app *App) ParseAnnotationRoute(annotation string) (Route, error) {
 	}, nil
 }
 
+//go:embed template/fiber.tmpl
+var fiberTemplate string
+
 // Generates the routes.go file.
 func (app *App) Generate() {
-	tmpl, err := template.ParseFiles("template/fiber.tmpl")
+	tmpl, err := template.New("fiber").Parse(fiberTemplate)
 	if err != nil {
 		panic(err)
 	}
