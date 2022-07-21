@@ -1,0 +1,10 @@
+package main
+import (
+	"github.com/gofiber/fiber/v2"
+    "app/handler"
+)
+func routeLoad(http *fiber.App) {
+	{{range .Routes}}
+    http.Add("{{.Method}}", "{{.Path}}", handler.{{.Handler}})
+    {{end}}
+}
