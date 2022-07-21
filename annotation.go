@@ -1,3 +1,9 @@
+/**
+Routes are first written in the comment lines.
+Then the library I prepared reads these comment lines and creates automatic route functions.
+It provides a Symfony framework or Flask-style routing environment.
+It does not cause performance problems because the route function is already created.
+*/
 package annotation
 
 import (
@@ -12,16 +18,21 @@ import (
 	"text/template"
 )
 
+// Configures the application.
 type Config struct {
 	Directory string // Handler or Controller directory path.
 	Output    string // Output file path; routes.go
 }
+
+// Parses the annotation and returns the route.
 type Route struct {
 	Method  string // HTTP method
 	Path    string // Path
 	Handler string // Handler name
 	Name    string // Route name
 }
+
+// App is the application.
 type App struct {
 	Config
 	Routes []Route
